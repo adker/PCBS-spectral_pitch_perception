@@ -16,7 +16,7 @@ The project consiste of a pychophysics experiment to decide between two possible
 - according to the second model, the spectral pitch correspond the spectral controid of the sound
 
 The pitches predicted par the two moels are represented here:
-![two models](C:\Users\adrie\Documents\Cours\Cogmaster\S2\PCSB\projet\fig_Influence du centroïde spectral sur la frequence du premier pic d AC.png "courbe des modeles")
+![two models](fig_models.png "courbe des modeles")
 
 ### Hypothesis
 
