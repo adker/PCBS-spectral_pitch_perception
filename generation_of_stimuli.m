@@ -1,57 +1,105 @@
-<<<<<<< HEAD
 clear all; 
 close all;
 
-path = 'C:\Users\adrie\Documents\Cours\Cogmaster\S2\Stage LSP\exp\generation_stim\stim\'
+%path = 'C:\Users\adrie\Documents\Cours\Cogmaster\S2\Stage LSP\exp\generation_stim\stim\'
+path = 'stimuli\'
+%% Parametres generaux
 
-%% Génération de stimuli
-
-f0 = 200;
 Fe = 44100;
 
-delta = f0/4;
-decalages = [-2*delta, -delta, 0, delta, 2*delta];
+duree_son = 4;              % plus long que ce qu'on va présenter au sujet (pour pouvoir modifier la longeur si besoin)
 
-f_c = [7, 11, 15]; % partiels résolus/peu résolus/non-résolus
+Q = 100;                    % facteur de qualite du filtre
+n = duree_son*Fe;
+t = (0:n)/Fe;               % vecteur temps
 
-duree_son = 0.5;
-duree_intra_stim = 0.1;
-duree_inter_stim = 0.3;
 
-son_base = clics(f0, Fe, duree_son+1.); % +1 sec car on va retirer la période transitoire
+%% Génération des stimuli
+
+fondamentales = [200, 220, 210, 230];
+
+f_c = [7, 11, 15];          % partiels résolus/peu résolus/non-résolus
 
 Q = 100;
 n = duree_son*Fe;
-t = (0:n)/Fe;                % vecteur temps
+t = (0:n)/Fe;               % vecteur temps
 
 son_final = [];
 
-for rep = 1:2 % repetitions
-    for i = 1:2 % ordre
-        for j = 1:3 % f_c
-            for k = 1:5
+for fond = 1:length(fondamentales)  % f0         
+    f0 = fondamentales(fond);
+    delta = f0/4;
+    decalages = [-2*delta, -2*delta, -delta, delta]; % du fois -2*delta car on y test deux hypothèses
+    son_base = clics(f0, Fe, duree_son+1.); % +1 sec car on va retirer la période transitoire
+    
+    for i = 1:2                     % ordre
+        for j = 1:3                 % f_c
+            for k = 1:4             % comparaison
                 centroide = (f_c(j)*f0) +decalages(k);
+                % on passe l'impulsion dans un filtre résonnateur
                 son_filtre = filtre(son_base, Fe, centroide, Q);
+                % on retire l'attaque du son
                 son_filtre = son_filtre(floor(0.5*Fe):length(son_filtre)-floor(0.5*Fe));
-                [freq] = AC_compute_analytical(son_filtre, f0, Fe);
-            %[pic, freq] = AC_deux_sections(son_filtre, f0, Fe, 0., 0.15, false);
-            %sin_ac = sin(2*pi*freq(1)*t);
-                sin_ac = sin(2*pi*freq*t);
-            %sp = spectre_ad_2(son_filtre, Fe, 4000);
-            %[M,I] = max(sp);
-            %sin_sp = sin(2*pi*I*t);
+                % on normalise par la rms
+                rms_son = sqrt(mean((son_filtre.*son_filtre)));
+                son_filtre = son_filtre/rms_son;
+                
+                % sin du pattern "escalier"
+                if k == 1
+                    sin_plat = sin(2*pi*(f_c(j)-1)*f0*t); % fréquence de l'harmonique de rang précédant 
+                else
+                    sin_plat = sin(2*pi*f_c(j)*f0*t);
+                end
+                
+                % sin du pattern "linéaire"
                 sin_lin = sin(2*pi*centroide*t);
                 if i == 1
-                    son_final = [sin_ac, zeros(1, Fe*duree_intra_stim), son_filtre, zeros(1, Fe*duree_inter_stim), sin_lin, zeros(1, Fe*duree_intra_stim), son_filtre];
+                    sin1 = sin_plat;
+                    sin2 = sin_lin;
                 else
-                    son_final = [sin_lin, zeros(1, Fe*duree_intra_stim), son_filtre, zeros(1, Fe*duree_inter_stim), sin_ac, zeros(1, Fe*duree_intra_stim), son_filtre];
+                    sin1 = sin_lin;
+                    sin2 = sin_plat;
                 end
-                titre = path+string(k)+'_'+string(j)+'_'+string(i)+'_'+string(rep)+'.wav';
-                audiowrite(titre, son_final, Fe);
+
+                titre_sin1 = string(path)+'comparaison'+'_'+string(k)+'_'+'fc'+'_'+string(j)+'_'+'ordre'+'_'+string(i)+'_'+'f0'+'_'+string(fond)+'_'+'sin1'+'.wav';
+                %titre_sin1 = string([path,'decalage',string(k),'_','fc',string(j),'_','ordre',string(i),'_','f0',string(fond),'_','sin1','.wav']);
+                titre_sin2 = string(path)+'comparaison'+'_'+string(k)+'_'+'fc'+'_'+string(j)+'_'+'ordre'+'_'+string(i)+'_'+'f0'+'_'+string(fond)+'_'+'sin2'+'.wav';
+                %titre_sin2 = string([path,'decalage',string(k),'_','fc',string(j),'_','ordre',string(i),'_','f0',string(fond),'_','sin2','.wav']);
+                titre_son = string(path)+'comparaison'+'_'+string(k)+'_'+'fc'+'_'+string(j)+'_'+'ordre'+'_'+string(i)+'_'+'f0'+'_'+string(fond)+'_'+'son'+'.wav';
+                %titre_son = string([path,'decalage',string(k),'_','fc',string(j),'_','ordre',string(i),'_','f0',string(fond),'_','son','.wav']);
+                audiowrite(titre_sin1, sin1, Fe);
+                audiowrite(titre_sin2, sin2, Fe);
+                audiowrite(titre_son, son_filtre, Fe);
+                
             end
         end
     end
 end
+
+%% Génération des deux exemples
+
+f0 = 300;
+
+f_c = 7;
+
+son_base = clics(f0, Fe, duree_son+1.); % +1 sec car on va retirer la période transitoire
+
+son_final = [];
+
+centroide = f_c*f0;
+son_filtre = filtre(son_base, Fe, centroide, Q);
+son_filtre = son_filtre(floor(0.5*Fe):length(son_filtre)-floor(0.5*Fe));
+rms_son = sqrt(mean((son_filtre.*son_filtre)));
+son_filtre = son_filtre/rms_son;
+
+sin_lin = sin(2*pi*centroide*t);
+sin_decale = sin(2*pi*(centroide+100)*t); % décalage arbitraire pour avoir une fréquence perceptiblement différente
+                    
+audiowrite([path,'son_example.wav'], son_filtre, Fe);
+audiowrite([path,'sin_good_example.wav'], sin_lin, Fe);
+audiowrite([path,'sin_bad_example.wav'], sin_decale, Fe);
+
+%sound(bad_ex, Fe);
 
 %% Fonctions 
 
@@ -75,100 +123,4 @@ Wo = bump/(Fe/2);
 clics_filtre = filter(B,A,son);
 son_filtre = clics_filtre*(max(son)/max(clics_filtre));
 
-end
-
-function sp = spectre_ad_2(son, Fe, fmax) 
-    n = length(son);
-    z = fft(son);                         % FFT
-    % normalisation des deux spectres
-    zmax = max(abs(z));
-    sp = abs(z(1:n/2))/zmax;
-    sp_db = 20*log(sp);
-=======
-clear all; 
-close all;
-
-path = 'C:\Users\adrie\Documents\Cours\Cogmaster\S2\Stage LSP\exp\generation_stim\stim\'
-
-%% Génération de stimuli
-
-f0 = 200;
-Fe = 40000;
-
-delta = f0/4;
-decalages = [-2*delta, -delta, 0, delta, 2*delta];
-
-f_c = [7, 11, 15]; % partiels résolus/peu résolus/non-résolus
-
-duree_son = 0.5;
-duree_intra_stim = 0.1;
-duree_inter_stim = 0.3;
-
-son_base = clics(f0, Fe, duree_son+1.); % +1 sec car on va retirer la période transitoire
-
-Q = 100;
-n = duree_son*Fe;
-t = (0:n)/Fe;                % vecteur temps
-
-son_final = [];
-
-for rep = 1:2 % repetitions
-    for i = 1:2 % ordre
-        for j = 1:3 % f_c
-            for k = 1:5
-                centroide = (f_c(j)*f0) +decalages(k);
-                son_filtre = filtre(son_base, Fe, centroide, Q);
-                son_filtre = son_filtre(floor(0.5*Fe):length(son_filtre)-floor(0.5*Fe));
-                [freq] = AC_compute_analytical(son_filtre, f0, Fe);
-            %[pic, freq] = AC_deux_sections(son_filtre, f0, Fe, 0., 0.15, false);
-            %sin_ac = sin(2*pi*freq(1)*t);
-                sin_ac = sin(2*pi*freq*t);
-            %sp = spectre_ad_2(son_filtre, Fe, 4000);
-            %[M,I] = max(sp);
-            %sin_sp = sin(2*pi*I*t);
-                sin_lin = sin(2*pi*centroide*t);
-                if i == 1
-                    son_final = [sin_ac, zeros(1, Fe*duree_intra_stim), son_filtre, zeros(1, Fe*duree_inter_stim), sin_lin, zeros(1, Fe*duree_intra_stim), son_filtre];
-                else
-                    son_final = [sin_lin, zeros(1, Fe*duree_intra_stim), son_filtre, zeros(1, Fe*duree_inter_stim), sin_ac, zeros(1, Fe*duree_intra_stim), son_filtre];
-                end
-                titre = path+string(k)+'_'+string(j)+'_'+string(i)+'_'+string(rep)+'.wav';
-                audiowrite(titre, son_final, Fe);
-            end
-        end
-    end
-end
-
-%% Fonctions 
-
-function serie_imp = clics(f0, Fe, duree)
-
-taille = Fe*duree;
-nb_imp = f0*duree;
-pas = floor(taille/nb_imp);
-serie_imp = zeros(1,taille);
-
-for i = 0:(nb_imp-2)
-    serie_imp((i*pas)+1) = 1;  % penser au ; !!!!!
-end
-
-end
-
-function son_filtre = filtre(son, Fe, bump, Q)
-
-Wo = bump/(Fe/2);
-[B,A] = nt_filter_peak(Wo,Q);
-clics_filtre = filter(B,A,son);
-son_filtre = clics_filtre*(max(son)/max(clics_filtre));
-
-end
-
-function sp = spectre_ad_2(son, Fe, fmax) 
-    n = length(son);
-    z = fft(son);                         % FFT
-    % normalisation des deux spectres
-    zmax = max(abs(z));
-    sp = abs(z(1:n/2))/zmax;
-    sp_db = 20*log(sp);
->>>>>>> 3dda64f4f4c97b176a1e25d78be93826dd028427
 end
