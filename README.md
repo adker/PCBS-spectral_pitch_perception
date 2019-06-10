@@ -87,7 +87,7 @@ Complex sounds stimuli are synthetic sounds produced as follows:
 - we obtain a sound with two pitches
 ![env](fig_spectrum_envelop.png)
 
-This was done with a [Matlab script](generation_of_stimuli.m).
+This was done with a [Matlab script](generation_of_stimuli.m) using [this filter](nt_filter_peak.m).
 
 
 ## Results
