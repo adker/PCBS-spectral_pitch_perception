@@ -18,7 +18,7 @@ In these styles, a single singer produces two pitches at the same time: typicall
 
 A commonly accepted explanation of the technique is that the singer produces a spectrally rich sound from which specific harmonics are amplified by resonating in his nasal and vocal cavities (like in a Helmholtz resonator).
 
-An example of overtone singing in the Sygyt style can be found [here](https://www.youtube.com/watch?v=vo34v7QQ254).
+An example of overtone singing in the Sygyt style can be found [here](https://www.youtube.com/watch?v=vo34v7QQ254) or [on this wave file](throat_singing_example.wav)
 We can follow the overtone melody from 00:54 to 01:04 of the video on this spectrogram (see below, you should focus on the 1000Hz-3000Hz frequency range).
 ![spectrogram](fig_spectrogram.png)
 
@@ -74,7 +74,7 @@ Then there is a brief familiarisation phase on the format of the real task (but 
 
 Then the task begins.
 
-The experiment code is available [here](experiment_spectral_pitch.py)
+The experiment code is available [here](experiment_spectral_pitch_final.py). Note that the stimuli have to be generated before running the experiment, see procedure below.
 
 
 #### Stimuli
@@ -87,7 +87,7 @@ Complex sounds stimuli are synthetic sounds produced as follows:
 - we obtain a sound with two pitches
 ![env](fig_spectrum_envelop.png)
 
-This was done with a [Matlab script](generation_of_stimuli.m).
+This was done with a [Matlab script](generation_of_stimuli_final.m) using [this filter](nt_filter_peak.m).
 
 
 ## Results
