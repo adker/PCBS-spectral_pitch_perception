@@ -23,6 +23,50 @@ def play_sound(nparray, sample_rate=44100):
     audio = audio.astype(np.int16)
     play_obj = sa.play_buffer(audio, 1, 2, sample_rate)
 
+def present_visual_stimuli():
+    # Paire 1
+    square_paire_1.present()
+    exp.clock.wait(duree_son*1000*2+duree_intra_stim*1000)
+    blankscreen.present()
+    exp.clock.wait(duree_inter_stim*1000)
+    # Paire 2
+    square_paire_2.present()
+    exp.clock.wait(duree_son*1000*2+duree_intra_stim*1000)
+    blankscreen.present()
+
+def ask_for_response():
+    expyriment.stimuli.TextScreen("",
+        """
+        Which pair was the best match ?\n\n\n
+        press [left arrow] if it is the first\n\n
+        press [right arrow] if it is the second
+        """).present()
+    key, rt = exp.keyboard.wait([expyriment.misc.constants.K_LEFT, expyriment.misc.constants.K_RIGHT])
+    if key == expyriment.misc.constants.K_LEFT:
+        reponse = 'first_best'
+    else:
+        reponse = 'second_best'
+    return reponse, rt
+
+def ask_for_confidence():
+    expyriment.stimuli.TextScreen("",
+        """
+        How confident are you ?\n\n\n
+        [1] confident\n\n
+        [2] not really confident\n\n
+        [3] answered by chance (no pair really matched)
+        """).present()
+    key_c, rt_conf = exp.keyboard.wait([expyriment.misc.constants.K_1, expyriment.misc.constants.K_2, expyriment.misc.constants.K_3])
+
+    if key_c == expyriment.misc.constants.K_1:
+        confidence = 1
+    elif key_c == expyriment.misc.constants.K_2:
+        confidence = 2
+    else:
+        confidence = 3
+    blankscreen.present()
+    return confidence, rt_conf
+
 ##############################################################################################################################################################
 # Initialisation
 #################
@@ -74,6 +118,10 @@ nb_ordre = 2        # regarder le code matlab de generation des stimuli
 nb_f0 = 2
 nb_trials = nb_comparaison*nb_fc*nb_rep*nb_ordre*nb_f0
 nb_trials_entrainement = nb_comparaison*nb_fc*2*nb_ordre*nb_f0 # one less block
+
+# uncomment to go quickly through all phases of the experiement:
+#nb_trials = 2
+#nb_trials_entrainement = 2
 
 iti = 500 # inter trial interval
 duree_son = .5
@@ -252,33 +300,14 @@ for nb_s in range(nb_trials_entrainement):
     # Play audio stimulus
     play_sound(stimulus, Fe)
 
-    # Paire 1
-    square_paire_1.present()
-    exp.clock.wait(duree_son*1000*2+duree_intra_stim*1000)
-    blankscreen.present()
-    exp.clock.wait(duree_inter_stim*1000)
-
-    # Paire 2
-    square_paire_2.present()
-    exp.clock.wait(duree_son*1000*2+duree_intra_stim*1000)
-    blankscreen.present()
+    # Present visual stimuli
+    present_visual_stimuli()
 
     # Reponse
-    expyriment.stimuli.TextScreen("",
-        """
-        Which pair was the best match ?\n\n\n
-        press [left arrow] if it is the first\n\n
-        press [right arrow] if it is the second
-        """).present()
-
-    key, rt = exp.keyboard.wait([expyriment.misc.constants.K_LEFT, expyriment.misc.constants.K_RIGHT])
-    if key == expyriment.misc.constants.K_LEFT:
-        reponse = 1
-    else:
-        reponse = 2
+    reponse, rt = ask_for_response()
 
     # Give feadback
-    if reponse == bonne_reponse:
+    if ((reponse == 'first_best') & (bonne_reponse == 1)) or ((reponse == 'second_best') & (bonne_reponse == 2)):
          expyriment.stimuli.TextLine("Ok !").present()
     else:
         expyriment.stimuli.TextLine("No ...").present()
@@ -314,35 +343,13 @@ for nb_s in range(nb_trial_entrainement):
     # Play audio stimulus
     play_sound(stimulus, Fe)
 
-    # Paire 1
-    square_paire_1.present()
-    exp.clock.wait(duree_son*1000*2+duree_intra_stim*1000)
-    blankscreen.present()
-    exp.clock.wait(duree_inter_stim*1000)
-
-    # Paire 2
-    square_paire_2.present()
-    exp.clock.wait(duree_son*1000*2+duree_intra_stim*1000)
-    blankscreen.present()
+    # Present visual stimuli
+    present_visual_stimuli()
 
     # Reponse
-    expyriment.stimuli.TextScreen("",
-        """
-        Which pair was the best match ?\n\n\n
-        press [left arrow] if it is the first\n\n
-        press [right arrow] if it is the second
-        """).present()
-    key, rt = exp.keyboard.wait([expyriment.misc.constants.K_LEFT, expyriment.misc.constants.K_RIGHT])
+    reponse, rt = ask_for_response()
+    confidence, rt_conf = ask_for_confidence()
 
-    expyriment.stimuli.TextScreen("",
-        """
-        How confident are you ?\n\n\n
-        [1] confident\n\n
-        [2] not really confident\n\n
-        [3] answered by chance (no pair really matched)
-        """).present()
-    key_c, rt_conf = exp.keyboard.wait([expyriment.misc.constants.K_1, expyriment.misc.constants.K_2, expyriment.misc.constants.K_3])
-    blankscreen.present()
     exp.clock.wait(iti)
 
 ##############################################################################################################################################################################
@@ -369,49 +376,15 @@ for nb_s in range(nb_trials):
     # Play audio stimulus
     play_sound(stimulus, Fe)
 
-    # Paire 1
-    square_paire_1.present()
-    exp.clock.wait(duree_son*1000*2+duree_intra_stim*1000)
-    blankscreen.present()
-    exp.clock.wait(duree_inter_stim*1000)
-
-    # Paire 2
-    square_paire_2.present()
-    exp.clock.wait(duree_son*1000*2+duree_intra_stim*1000)
-    blankscreen.present()
+    # Present visual stimuli
+    present_visual_stimuli()
 
     # Reponse
-    expyriment.stimuli.TextScreen("",
-        """
-        Which pair was the best match ?\n\n\n
-        press [left arrow] if it is the first\n\n
-        press [right arrow] if it is the second
-        """).present()
-    key, rt = exp.keyboard.wait([expyriment.misc.constants.K_LEFT, expyriment.misc.constants.K_RIGHT])
-    if key == expyriment.misc.constants.K_LEFT:
-        response = 'first_best'
-    else:
-        response = 'second_best'
-
-    expyriment.stimuli.TextScreen("",
-        """
-        How confident are you ?\n\n\n
-        [1] confident\n\n
-        [2] not really confident\n\n
-        [3] answered by chance (no pair really matched)
-        """).present()
-    key_c, rt_conf = exp.keyboard.wait([expyriment.misc.constants.K_1, expyriment.misc.constants.K_2, expyriment.misc.constants.K_3])
-
-    if key_c == expyriment.misc.constants.K_1:
-        confidence = 1
-    elif key_c == expyriment.misc.constants.K_2:
-        confidence = 2
-    else:
-        confidence = 3
-    blankscreen.present()
+    reponse, rt = ask_for_response()
+    confidence, rt_conf = ask_for_confidence()
 
     # Save data
-    exp.data.add([time, nb_s+1, label, comparaison, fc, ordre, f0, repetition, response, 'NA', rt, confidence, rt_conf, 'test'])
+    exp.data.add([time, nb_s+1, label, comparaison, fc, ordre, f0, repetition, reponse, 'NA', rt, confidence, rt_conf, 'test'])
     exp.clock.wait(iti)
 
 expyriment.control.end()
