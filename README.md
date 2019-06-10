@@ -74,7 +74,7 @@ Then there is a brief familiarisation phase on the format of the real task (but 
 
 Then the task begins.
 
-The experiment code is available [here](experiment_spectral_pitch.py)
+The experiment code is available [here](experiment_spectral_pitch.py)(note that the stimuli have to be generated before running the experiment, see procedure below).
 
 
 #### Stimuli
