@@ -74,7 +74,7 @@ Then there is a brief familiarisation phase on the format of the real task (but 
 
 Then the task begins.
 
-The experiment code is available [here](experiment_spectral_pitch.py)(note that the stimuli have to be generated before running the experiment, see procedure below).
+The experiment code is available [here](experiment_spectral_pitch_final.py). Note that the stimuli have to be generated before running the experiment, see procedure below.
 
 
 #### Stimuli
@@ -87,7 +87,7 @@ Complex sounds stimuli are synthetic sounds produced as follows:
 - we obtain a sound with two pitches
 ![env](fig_spectrum_envelop.png)
 
-This was done with a [Matlab script](generation_of_stimuli.m) using [this filter](nt_filter_peak.m).
+This was done with a [Matlab script](generation_of_stimuli_final.m) using [this filter](nt_filter_peak.m).
 
 
 ## Results
