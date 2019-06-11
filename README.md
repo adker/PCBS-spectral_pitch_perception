@@ -4,6 +4,7 @@
 #### Final project for PCBS class
 #### (on the same topic as an internship at the LSP, ENS)
 ##### *Adrien Kerebel*
+###### *experiment designed with the help of A. de Cheveigné and J. Graves*
 
 ## Subject: auditory perception (pitch perception)
 
