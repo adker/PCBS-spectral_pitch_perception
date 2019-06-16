@@ -11,6 +11,15 @@
 
 The aim of the project is to decide between two potential predictive models of spectral pitch perception (like in overtone singing).
 
+**Table of Contents**
+
+- [Background information](#background-information)
+    - [Overtone singing](#overtone-singing)
+    - [Research question](#Research question)
+- [Description of the experiment](#description-of-the-experiment)
+    - [Hypothesis](#hypothesis)
+
+
 ## Background information
 #### Overtone singing
 
