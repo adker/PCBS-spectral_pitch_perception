@@ -15,14 +15,14 @@ The aim of the project is to decide between two potential predictive models of s
 #### Overtone singing
 
 Overtone singing (aka throat singing or Khoomei) is a set of traditional singing styles and techniques that originated from central Asia.
-![map](fig_map_asia.png)
+![map](figures/fig_map_asia.png)
 In these styles, a single singer produces two pitches at the same time: typically, one low steady note and a high whistle made of the harmonics of the low tone.
 
 A commonly accepted explanation of the technique is that the singer produces a spectrally rich sound from which specific harmonics are amplified by resonating in his nasal and vocal cavities (like in a Helmholtz resonator).
 
-An example of overtone singing in the Sygyt style can be found [here](https://www.youtube.com/watch?v=vo34v7QQ254) or [on this wave file](throat_singing_example.wav)
+An example of overtone singing in the Sygyt style can be found [here](https://www.youtube.com/watch?v=vo34v7QQ254) or [on this wave file](supplementary/throat_singing_example.wav)
 We can follow the overtone melody from 00:54 to 01:04 of the video on this spectrogram (see below, you should focus on the 1000Hz-3000Hz frequency range).
-![spectrogram](fig_spectrogram.png)
+![spectrogram](figures/fig_spectrogram.png)
 
 We can notice that there are two kinds of pitches here: a **virtual pitch** corresponding to the fundamental frequency of the sound and **spectral pitches** elicited by maxima of energy in the spectrum.  
 
@@ -34,16 +34,16 @@ For doing that, I imagined two very simple models of spectral pitch perception.
 
 According to the first model, the spectral pitch corresponds to the center of the **spectral envelope** of the sound (an imaginary line that determines the height of each harmonic partial in the spectrum).
 For example, for this sound it would be 3000Hz:
-![env](fig_spectrum_envelop.png)
+![env](figures/fig_spectrum_envelop.png)
 
 According to the second model, the spectral pitch corresponds to the frequency of the harmonic partial that has the most energy (the higher bar in the spectrum).
 For example, for this sound it would be 1400Hz:
-![env](fig_spectrum_partial.png)
+![env](figures/fig_spectrum_partial.png)
 
 It is worth noting that these two models predict the same pitch when the spectral envelope is centered on a harmonic of the sound (like in overtone singing). To decide between them we have to use sounds for which it is not the case.
 
 The predictions of the two models are summed up in the following figure:
-![two models](fig_two_models.png "courbe des modeles")
+![two models](figures/fig_two_models.png "courbe des modeles")
 
 
 ## Description of the experiment
@@ -102,7 +102,7 @@ def ask_for_confidence():
 ```
 
 Four types of comparisons are made, corresponding to four positions of the spectral envelope on a "harmonic zone". For a harmonic zone centered on f_z, the comparisons made are as follows:
-![comp](fig_comparisons.png)
+![comp](figures/fig_comparisons.png)
 
 #### Procedure
 
@@ -119,7 +119,7 @@ The full experiment code is available [here](experiment_spectral_pitch_final.py)
 
 Complex sounds stimuli are synthetic sounds produced as follows:
 - we generate an impulsions series (with chosen fundamental frequency f0)
-![impulsion series](fig_impulsions.png)
+![impulsion series](figures/fig_impulsions.png)
 
         function serie_imp = clics(f0, Fe, duree)
 
@@ -135,7 +135,7 @@ Complex sounds stimuli are synthetic sounds produced as follows:
         end
 
 - we filter it in a resonating filter (with chosen resonance frequency fr and quality factor Q)
-![filter](fig_filter.png)
+![filter](figures/fig_filter.png)
 
         function son_filtre = filtre(son, Fe, bump, Q)
 
@@ -147,7 +147,7 @@ Complex sounds stimuli are synthetic sounds produced as follows:
         end
 
 - we obtain a sound with two pitches
-![env](fig_spectrum_envelop.png)
+![env](figures/fig_spectrum_envelop.png)
 
 This was done with a [Matlab script](generation_of_stimuli_final.m) using [this filter](nt_filter_peak.m) (I haven't coded the filter).
 
@@ -188,8 +188,8 @@ Briefly, the second model (strongest partial in the spectrum) seems to be prefer
 
 Interestingly, none of the models is strongly preferred on the non-resolved partials zone.    
 
-![res](fig_res.png)
+![res](figures/fig_res.png)
 
 ## Supplementary material
 
-The scripts used to make the figures of this document are available in the "supplementary" folder of the repository (![spectrum](spectre_plot.m), ![filter frequency response](plot_reponse_en_frequence.m), ![sonagramme](plot_sonagramme.m)).
+The scripts used to make the figures of this document are available in the "supplementary" folder of the repository (![spectrum](supplementary/spectre_plot.m), ![filter frequency response](supplementary/plot_reponse_en_frequence.m), ![sonagramme](supplementary/plot_sonagramme.m)).
