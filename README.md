@@ -15,10 +15,15 @@ The aim of the project is to decide between two potential predictive models of s
 
 - [Background information](#background-information)
     - [Overtone singing](#overtone-singing)
-    - [Research question](#Research question)
+    - [Research question](#research-question)
 - [Description of the experiment](#description-of-the-experiment)
     - [Hypothesis](#hypothesis)
-
+    - [Task](#task)
+    - [Procedure](#procedure)
+    - [Stimuli](#stimuli)
+- [Results](#results)
+- [Conclusion](#conclusion)
+- [Supplementary](#supplementary-material)
 
 ## Background information
 #### Overtone singing
@@ -198,6 +203,8 @@ Briefly, the second model (strongest partial in the spectrum) seems to be prefer
 Interestingly, none of the models is strongly preferred on the non-resolved partials zone.    
 
 ![res](figures/fig_res.png)
+
+## Conclusion
 
 ## Supplementary material
 
