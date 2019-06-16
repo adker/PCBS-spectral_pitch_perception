@@ -1,0 +1,277 @@
+#Expyriment 0.9.0 (Python 3.6.5), .xpd-file, coding: cp1252
+#date: Sat May 18 2019 23:34:47
+#--EXPERIMENT INFO
+#e mainfile: experiment_spectral_pitch_final_v2.py
+#e sha1: None
+#e modules: 
+#e 
+#e     clock = instant de reponse
+#e     trial = numero du trial
+#e     Stimulus_label = caracteristiques du stimulus
+#e     comparaison = quel comparaison etait demandee, 4 niveaux:
+#e         - entre (fc-1)*f0 et (fc-0.5f0) avec le centroide a (fc-0.5f0)
+#e         - entre (fc)*f0 et (fc-0.5f0) avec le centroide a (fc-0.5f0)
+#e         - entre (fc)*f0 et (fc-0.25f0) avec le centroide a (fc-0.25f0)
+#e         - entre (fc)*f0 et (fc+0.25f0) avec le centroide a (fc+0.25f0)
+#e     fc = zone du spectre ou ce trouve le centroide spectral, 3 niveaux:
+#e         - autour de l'harmonique de rang 7 (partiels resolus)
+#e         - autour de l'harmonique de rang 11 (patiels mal resolus)
+#e         -autour de l'harmonique de rang 13 (partiels non resolus)
+#e     ordre = ordre dans lequel sont presentees les paires de sons, 2 niveaux
+#e         - 1 = pattern 'escalier' en premier
+#e         - 2 = pattern 'lineaire' en premier
+#e     f0 = frequence fondamentale (2 niveaux: 200 ou 220 Hz)
+#e     Occurence = rang d occurence de ce stimulus
+#e     Response_test = 0 ou 1 selon la paire choisie (premiere ou deuxième)
+#e     Response_entrainement = True si la réponse du participant est correcte
+#e     RT_reponse
+#e     Confidence
+#e     RT_conf
+#e     Entrainement_ou_test = indique dans quelle phase on se trouve
+#e     
+#e duree de chaque son: 0.5, duree entre les sons de chaque paire: 0.1, duree entre chaque paire: 0.5
+#e Experiment: Spectral pitch experiment
+#e no between subject factors
+#--SUBJECT INFO
+#s id: 8
+subject_id,clock,trial,Stimulus_label,comparaison,zone_fc,ordre,f0,Occurence,Response_test,Response_entrainement,RT_reponse,Confidence,RT_conf,Entrainement_ou_test
+8,8391,1,comparaison_4_fc_2_ordre_2_f0_2,4,2,2,2,1,NA,True,1126,NA,NA,entrainement
+8,20751,2,comparaison_1_fc_3_ordre_1_f0_2,1,3,1,2,1,NA,True,534,NA,NA,entrainement
+8,25684,3,comparaison_2_fc_3_ordre_1_f0_2,2,3,1,2,1,NA,True,174,NA,NA,entrainement
+8,30617,4,comparaison_3_fc_1_ordre_2_f0_2,3,1,2,2,1,NA,True,226,NA,NA,entrainement
+8,35511,5,comparaison_2_fc_2_ordre_1_f0_1,2,2,1,1,1,NA,True,52,NA,NA,entrainement
+8,40049,6,comparaison_1_fc_2_ordre_1_f0_1,1,2,1,1,1,NA,True,5260,NA,NA,entrainement
+8,50165,7,comparaison_2_fc_2_ordre_1_f0_2,2,2,1,2,1,NA,True,218,NA,NA,entrainement
+8,54949,8,comparaison_3_fc_2_ordre_1_f0_2,3,2,1,2,1,NA,True,790,NA,NA,entrainement
+8,60363,9,comparaison_1_fc_1_ordre_1_f0_1,1,1,1,1,1,NA,True,1076,NA,NA,entrainement
+8,66495,10,comparaison_3_fc_1_ordre_1_f0_1,3,1,1,1,1,NA,True,218,NA,NA,entrainement
+8,71245,11,comparaison_2_fc_2_ordre_2_f0_2,2,2,2,2,1,NA,True,177,NA,NA,entrainement
+8,75977,12,comparaison_2_fc_3_ordre_2_f0_2,2,3,2,2,1,NA,True,275,NA,NA,entrainement
+8,80644,13,comparaison_4_fc_3_ordre_1_f0_2,4,3,1,2,1,NA,True,92,NA,NA,entrainement
+8,85178,14,comparaison_4_fc_2_ordre_2_f0_1,4,2,2,1,1,NA,True,1596,NA,NA,entrainement
+8,92311,15,comparaison_3_fc_3_ordre_1_f0_1,3,3,1,1,1,NA,True,1281,NA,NA,entrainement
+8,99192,16,comparaison_1_fc_1_ordre_2_f0_2,1,1,2,2,1,NA,True,687,NA,NA,entrainement
+8,104341,17,comparaison_3_fc_1_ordre_1_f0_2,3,1,1,2,1,NA,True,52,NA,NA,entrainement
+8,108856,18,comparaison_2_fc_2_ordre_2_f0_1,2,2,2,1,1,NA,True,487,NA,NA,entrainement
+8,113939,19,comparaison_4_fc_3_ordre_2_f0_2,4,3,2,2,1,NA,True,205,NA,NA,entrainement
+8,118605,20,comparaison_3_fc_3_ordre_2_f0_1,3,3,2,1,1,NA,True,1491,NA,NA,entrainement
+8,124590,21,comparaison_2_fc_1_ordre_1_f0_1,2,1,1,1,1,NA,True,112,NA,NA,entrainement
+8,129221,22,comparaison_3_fc_2_ordre_1_f0_1,3,2,1,1,1,NA,True,725,NA,NA,entrainement
+8,134386,23,comparaison_4_fc_3_ordre_2_f0_1,4,3,2,1,1,NA,True,443,NA,NA,entrainement
+8,139303,24,comparaison_1_fc_1_ordre_2_f0_1,1,1,2,1,1,NA,True,896,NA,NA,entrainement
+8,144768,25,comparaison_3_fc_1_ordre_2_f0_1,3,1,2,1,1,NA,True,2106,NA,NA,entrainement
+8,151385,26,comparaison_1_fc_3_ordre_1_f0_1,1,3,1,1,1,NA,True,387,NA,NA,entrainement
+8,156234,27,comparaison_1_fc_3_ordre_2_f0_1,1,3,2,1,1,NA,True,279,NA,NA,entrainement
+8,161028,28,comparaison_4_fc_2_ordre_1_f0_1,4,2,1,1,1,NA,False,2628,NA,NA,entrainement
+8,168066,29,comparaison_2_fc_1_ordre_1_f0_2,2,1,1,2,1,NA,True,4429,NA,NA,entrainement
+8,178331,30,comparaison_4_fc_1_ordre_2_f0_2,4,1,2,2,1,NA,True,703,NA,NA,entrainement
+8,185563,31,comparaison_4_fc_2_ordre_1_f0_2,4,2,1,2,1,NA,True,444,NA,NA,entrainement
+8,190563,32,comparaison_4_fc_1_ordre_1_f0_2,4,1,1,2,1,NA,True,3629,NA,NA,entrainement
+8,200430,33,comparaison_3_fc_2_ordre_2_f0_1,3,2,2,1,1,NA,True,1514,NA,NA,entrainement
+8,208308,34,comparaison_2_fc_1_ordre_2_f0_2,2,1,2,2,1,NA,True,440,NA,NA,entrainement
+8,213727,35,comparaison_4_fc_3_ordre_1_f0_1,4,3,1,1,1,NA,True,483,NA,NA,entrainement
+8,219104,36,comparaison_1_fc_3_ordre_2_f0_2,1,3,2,2,1,NA,True,441,NA,NA,entrainement
+8,224375,37,comparaison_4_fc_1_ordre_2_f0_1,4,1,2,1,1,NA,True,475,NA,NA,entrainement
+8,229957,38,comparaison_2_fc_3_ordre_2_f0_1,2,3,2,1,1,NA,True,719,NA,NA,entrainement
+8,235523,39,comparaison_1_fc_1_ordre_1_f0_2,1,1,1,2,1,NA,True,1696,NA,NA,entrainement
+8,242039,40,comparaison_3_fc_3_ordre_2_f0_2,3,3,2,2,1,NA,True,451,NA,NA,entrainement
+8,247572,41,comparaison_3_fc_2_ordre_2_f0_2,3,2,2,2,1,NA,True,852,NA,NA,entrainement
+8,253105,42,comparaison_2_fc_1_ordre_2_f0_1,2,1,2,1,1,NA,True,1882,NA,NA,entrainement
+8,259788,43,comparaison_4_fc_1_ordre_1_f0_1,4,1,1,1,1,NA,True,373,NA,NA,entrainement
+8,264786,44,comparaison_1_fc_2_ordre_1_f0_2,1,2,1,2,1,NA,True,527,NA,NA,entrainement
+8,270285,45,comparaison_2_fc_3_ordre_1_f0_1,2,3,1,1,1,NA,True,1445,NA,NA,entrainement
+8,276519,46,comparaison_1_fc_2_ordre_2_f0_2,1,2,2,2,1,NA,True,426,NA,NA,entrainement
+8,281535,47,comparaison_3_fc_3_ordre_1_f0_2,3,3,1,2,1,NA,True,460,NA,NA,entrainement
+8,286529,48,comparaison_1_fc_2_ordre_2_f0_1,1,2,2,1,1,NA,True,399,NA,NA,entrainement
+8,291416,49,comparaison_3_fc_1_ordre_1_f0_1,3,1,1,1,2,NA,True,746,NA,NA,entrainement
+8,296883,50,comparaison_2_fc_1_ordre_2_f0_1,2,1,2,1,2,NA,True,440,NA,NA,entrainement
+8,302178,51,comparaison_1_fc_2_ordre_2_f0_1,1,2,2,1,2,NA,True,757,NA,NA,entrainement
+8,307841,52,comparaison_4_fc_2_ordre_1_f0_2,4,2,1,2,2,NA,True,380,NA,NA,entrainement
+8,312808,53,comparaison_4_fc_3_ordre_2_f0_2,4,3,2,2,2,NA,True,398,NA,NA,entrainement
+8,317662,54,comparaison_2_fc_2_ordre_2_f0_2,2,2,2,2,2,NA,True,744,NA,NA,entrainement
+8,323057,55,comparaison_1_fc_1_ordre_1_f0_2,1,1,1,2,2,NA,True,341,NA,NA,entrainement
+8,328129,56,comparaison_3_fc_2_ordre_2_f0_1,3,2,2,1,2,NA,True,437,NA,NA,entrainement
+8,333262,57,comparaison_3_fc_3_ordre_1_f0_2,3,3,1,2,2,NA,True,424,NA,NA,entrainement
+8,338455,58,comparaison_4_fc_2_ordre_1_f0_1,4,2,1,1,2,NA,True,500,NA,NA,entrainement
+8,343408,59,comparaison_4_fc_1_ordre_1_f0_2,4,1,1,2,2,NA,True,302,NA,NA,entrainement
+8,348425,60,comparaison_2_fc_2_ordre_1_f0_1,2,2,1,1,2,NA,True,351,NA,NA,entrainement
+8,353158,61,comparaison_3_fc_1_ordre_1_f0_2,3,1,1,2,2,NA,True,658,NA,NA,entrainement
+8,358353,62,comparaison_3_fc_2_ordre_1_f0_2,3,2,1,2,2,NA,True,154,NA,NA,entrainement
+8,362952,63,comparaison_2_fc_3_ordre_2_f0_2,2,3,2,2,2,NA,True,751,NA,NA,entrainement
+8,368424,64,comparaison_4_fc_2_ordre_2_f0_2,4,2,2,2,2,NA,True,319,NA,NA,entrainement
+8,373224,65,comparaison_1_fc_3_ordre_2_f0_1,1,3,2,1,2,NA,True,350,NA,NA,entrainement
+8,378316,66,comparaison_2_fc_3_ordre_1_f0_2,2,3,1,2,2,NA,True,729,NA,NA,entrainement
+8,383600,67,comparaison_1_fc_1_ordre_2_f0_2,1,1,2,2,2,NA,True,426,NA,NA,entrainement
+8,388504,68,comparaison_4_fc_1_ordre_1_f0_1,4,1,1,1,2,NA,True,528,NA,NA,entrainement
+8,393802,69,comparaison_3_fc_3_ordre_2_f0_2,3,3,2,2,2,NA,True,420,NA,NA,entrainement
+8,398769,70,comparaison_3_fc_3_ordre_1_f0_1,3,3,1,1,2,NA,True,563,NA,NA,entrainement
+8,403852,71,comparaison_2_fc_3_ordre_2_f0_1,2,3,2,1,2,NA,True,332,NA,NA,entrainement
+8,408635,72,comparaison_3_fc_1_ordre_2_f0_2,3,1,2,2,2,NA,True,351,NA,NA,entrainement
+8,413433,73,comparaison_2_fc_2_ordre_2_f0_1,2,2,2,1,2,NA,True,316,NA,NA,entrainement
+8,418183,74,comparaison_4_fc_1_ordre_2_f0_1,4,1,2,1,2,NA,True,275,NA,NA,entrainement
+8,422832,75,comparaison_3_fc_3_ordre_2_f0_1,3,3,2,1,2,NA,True,299,NA,NA,entrainement
+8,427532,76,comparaison_4_fc_3_ordre_1_f0_1,4,3,1,1,2,NA,True,367,NA,NA,entrainement
+8,432282,77,comparaison_1_fc_2_ordre_1_f0_2,1,2,1,2,2,NA,True,24,NA,NA,entrainement
+8,437230,78,comparaison_2_fc_1_ordre_1_f0_2,2,1,1,2,2,NA,True,222,NA,NA,entrainement
+8,441880,79,comparaison_1_fc_1_ordre_1_f0_1,1,1,1,1,2,NA,True,1442,NA,NA,entrainement
+8,448029,80,comparaison_1_fc_2_ordre_1_f0_1,1,2,1,1,2,NA,True,320,NA,NA,entrainement
+8,452695,81,comparaison_2_fc_3_ordre_1_f0_1,2,3,1,1,2,NA,True,333,NA,NA,entrainement
+8,457361,82,comparaison_4_fc_3_ordre_1_f0_2,4,3,1,2,2,NA,True,52,NA,NA,entrainement
+8,461889,83,comparaison_2_fc_2_ordre_1_f0_2,2,2,1,2,2,NA,True,143,NA,NA,entrainement
+8,466339,84,comparaison_4_fc_2_ordre_2_f0_1,4,2,2,1,2,NA,True,770,NA,NA,entrainement
+8,471944,85,comparaison_4_fc_3_ordre_2_f0_1,4,3,2,1,2,NA,True,414,NA,NA,entrainement
+8,476775,86,comparaison_3_fc_2_ordre_2_f0_2,3,2,2,2,2,NA,True,657,NA,NA,entrainement
+8,482041,87,comparaison_2_fc_1_ordre_1_f0_1,2,1,1,1,2,NA,True,253,NA,NA,entrainement
+8,486774,88,comparaison_3_fc_1_ordre_2_f0_1,3,1,2,1,2,NA,True,449,NA,NA,entrainement
+8,491702,89,comparaison_3_fc_2_ordre_1_f0_1,3,2,1,1,2,NA,True,393,NA,NA,entrainement
+8,497006,90,comparaison_1_fc_1_ordre_2_f0_1,1,1,2,1,2,NA,True,817,NA,NA,entrainement
+8,502506,91,comparaison_1_fc_2_ordre_2_f0_2,1,2,2,2,2,NA,True,352,NA,NA,entrainement
+8,507288,92,comparaison_2_fc_1_ordre_2_f0_2,2,1,2,2,2,NA,True,407,NA,NA,entrainement
+8,512371,93,comparaison_1_fc_3_ordre_1_f0_2,1,3,1,2,2,NA,True,337,NA,NA,entrainement
+8,517204,94,comparaison_1_fc_3_ordre_2_f0_2,1,3,2,2,2,NA,True,470,NA,NA,entrainement
+8,522137,95,comparaison_4_fc_1_ordre_2_f0_2,4,1,2,2,2,NA,True,221,NA,NA,entrainement
+8,526831,96,comparaison_1_fc_3_ordre_1_f0_1,1,3,1,1,2,NA,True,346,NA,NA,entrainement
+8,579629,1,comparaison_3_fc_1_ordre_2_f0_2,3,1,2,2,1,first_best,NA,2098,2,950,test
+8,587374,2,comparaison_1_fc_3_ordre_1_f0_1,1,3,1,1,1,first_best,NA,287,1,758,test
+8,593144,3,comparaison_2_fc_1_ordre_2_f0_2,2,1,2,2,1,first_best,NA,1998,1,579,test
+8,600511,4,comparaison_2_fc_3_ordre_1_f0_2,2,3,1,2,1,first_best,NA,461,1,529,test
+8,606220,5,comparaison_4_fc_3_ordre_1_f0_1,4,3,1,1,1,first_best,NA,435,1,317,test
+8,611632,6,comparaison_4_fc_3_ordre_1_f0_2,4,3,1,2,1,first_best,NA,730,1,473,test
+8,617501,7,comparaison_4_fc_1_ordre_1_f0_1,4,1,1,1,1,first_best,NA,415,1,358,test
+8,622992,8,comparaison_3_fc_2_ordre_2_f0_2,3,2,2,2,1,second_best,NA,2577,2,691,test
+8,630947,9,comparaison_2_fc_1_ordre_2_f0_1,2,1,2,1,1,first_best,NA,683,1,603,test
+8,636866,10,comparaison_2_fc_3_ordre_2_f0_1,2,3,2,1,1,second_best,NA,2177,2,711,test
+8,644458,11,comparaison_1_fc_3_ordre_2_f0_1,1,3,2,1,1,first_best,NA,376,1,404,test
+8,649892,12,comparaison_4_fc_2_ordre_2_f0_2,4,2,2,2,1,second_best,NA,1818,2,616,test
+8,656917,13,comparaison_4_fc_1_ordre_2_f0_1,4,1,2,1,1,first_best,NA,889,1,442,test
+8,662962,14,comparaison_3_fc_2_ordre_1_f0_1,3,2,1,1,1,second_best,NA,3249,3,1237,test
+8,672188,15,comparaison_4_fc_1_ordre_1_f0_2,4,1,1,2,1,first_best,NA,308,1,155,test
+8,677308,16,comparaison_3_fc_1_ordre_1_f0_1,3,1,1,1,1,first_best,NA,429,1,351,test
+8,682799,17,comparaison_3_fc_3_ordre_2_f0_2,3,3,2,2,1,first_best,NA,254,1,233,test
+8,687951,18,comparaison_2_fc_2_ordre_1_f0_2,2,2,1,2,1,first_best,NA,1769,2,1438,test
+8,695816,19,comparaison_4_fc_1_ordre_2_f0_2,4,1,2,2,1,second_best,NA,205,1,366,test
+8,701046,20,comparaison_1_fc_3_ordre_1_f0_2,1,3,1,2,1,second_best,NA,510,1,439,test
+8,706656,21,comparaison_2_fc_2_ordre_2_f0_2,2,2,2,2,1,second_best,NA,1776,2,985,test
+8,714090,22,comparaison_1_fc_1_ordre_1_f0_2,1,1,1,2,1,first_best,NA,792,2,658,test
+8,720195,23,comparaison_1_fc_1_ordre_2_f0_2,1,1,2,2,1,first_best,NA,232,1,318,test
+8,725419,24,comparaison_2_fc_1_ordre_1_f0_2,2,1,1,2,1,second_best,NA,2354,2,419,test
+8,732838,25,comparaison_1_fc_2_ordre_1_f0_2,1,2,1,2,1,first_best,NA,596,1,368,test
+8,738476,26,comparaison_1_fc_2_ordre_2_f0_1,1,2,2,1,1,first_best,NA,347,2,588,test
+8,744074,27,comparaison_4_fc_3_ordre_2_f0_2,4,3,2,2,1,first_best,NA,372,1,360,test
+8,749534,28,comparaison_3_fc_2_ordre_1_f0_2,3,2,1,2,1,first_best,NA,190,1,168,test
+8,754595,29,comparaison_2_fc_1_ordre_1_f0_1,2,1,1,1,1,first_best,NA,701,2,599,test
+8,760633,30,comparaison_1_fc_1_ordre_1_f0_1,1,1,1,1,1,first_best,NA,381,1,252,test
+8,765907,31,comparaison_3_fc_1_ordre_1_f0_2,3,1,1,2,1,first_best,NA,265,1,166,test
+8,771009,32,comparaison_3_fc_1_ordre_2_f0_1,3,1,2,1,1,first_best,NA,855,1,319,test
+8,776869,33,comparaison_1_fc_2_ordre_1_f0_1,1,2,1,1,1,second_best,NA,1911,1,670,test
+8,784133,34,comparaison_2_fc_2_ordre_2_f0_1,2,2,2,1,1,first_best,NA,2488,2,322,test
+8,791600,35,comparaison_1_fc_1_ordre_2_f0_1,1,1,2,1,1,first_best,NA,1825,2,344,test
+8,798452,36,comparaison_4_fc_3_ordre_2_f0_1,4,3,2,1,1,second_best,NA,1626,1,355,test
+8,805343,37,comparaison_3_fc_3_ordre_1_f0_1,3,3,1,1,1,first_best,NA,460,2,354,test
+8,810788,38,comparaison_4_fc_2_ordre_1_f0_2,4,2,1,2,1,first_best,NA,444,1,157,test
+8,816049,39,comparaison_3_fc_3_ordre_1_f0_2,3,3,1,2,1,second_best,NA,1145,1,360,test
+8,822251,40,comparaison_3_fc_2_ordre_2_f0_1,3,2,2,1,1,first_best,NA,2440,3,423,test
+8,829845,41,comparaison_2_fc_3_ordre_2_f0_2,2,3,2,2,1,first_best,NA,1539,2,313,test
+8,836364,42,comparaison_4_fc_2_ordre_2_f0_1,4,2,2,1,1,second_best,NA,503,1,927,test
+8,842578,43,comparaison_1_fc_3_ordre_2_f0_2,1,3,2,2,1,first_best,NA,988,1,285,test
+8,848642,44,comparaison_2_fc_3_ordre_1_f0_1,2,3,1,1,1,second_best,NA,523,1,276,test
+8,854204,45,comparaison_3_fc_3_ordre_2_f0_1,3,3,2,1,1,first_best,NA,1664,2,1115,test
+8,861714,46,comparaison_1_fc_2_ordre_2_f0_2,1,2,2,2,1,second_best,NA,114,1,520,test
+8,867023,47,comparaison_2_fc_2_ordre_1_f0_1,2,2,1,1,1,second_best,NA,629,1,331,test
+8,872700,48,comparaison_4_fc_2_ordre_1_f0_1,4,2,1,1,1,first_best,NA,319,1,138,test
+8,877839,49,comparaison_2_fc_2_ordre_2_f0_1,2,2,2,1,2,second_best,NA,1811,2,379,test
+8,884671,50,comparaison_1_fc_2_ordre_1_f0_1,1,2,1,1,2,first_best,NA,73,1,104,test
+8,889550,51,comparaison_4_fc_3_ordre_1_f0_2,4,3,1,2,2,first_best,NA,238,1,64,test
+8,894483,52,comparaison_1_fc_2_ordre_2_f0_1,1,2,2,1,2,second_best,NA,373,1,276,test
+8,899827,53,comparaison_2_fc_3_ordre_2_f0_2,2,3,2,2,2,first_best,NA,92,1,160,test
+8,904771,54,comparaison_2_fc_2_ordre_2_f0_2,2,2,2,2,2,first_best,NA,174,1,165,test
+8,909775,55,comparaison_3_fc_2_ordre_1_f0_1,3,2,1,1,2,first_best,NA,39,2,339,test
+8,914771,56,comparaison_2_fc_1_ordre_1_f0_1,2,1,1,1,2,second_best,NA,4111,2,748,test
+8,924327,57,comparaison_1_fc_3_ordre_1_f0_2,1,3,1,2,2,first_best,NA,129,1,380,test
+8,929504,58,comparaison_2_fc_3_ordre_1_f0_1,2,3,1,1,2,first_best,NA,469,1,218,test
+8,934905,59,comparaison_3_fc_3_ordre_1_f0_1,3,3,1,1,2,second_best,NA,268,1,529,test
+8,940372,60,comparaison_4_fc_2_ordre_2_f0_2,4,2,2,2,2,first_best,NA,1431,3,323,test
+8,946854,61,comparaison_4_fc_2_ordre_1_f0_2,4,2,1,2,2,first_best,NA,16,1,211,test
+8,951764,62,comparaison_2_fc_2_ordre_1_f0_2,2,2,1,2,2,first_best,NA,1124,3,277,test
+8,957842,63,comparaison_3_fc_3_ordre_1_f0_2,3,3,1,2,2,first_best,NA,3239,2,896,test
+8,966682,64,comparaison_4_fc_3_ordre_2_f0_1,4,3,2,1,2,first_best,NA,131,1,2397,test
+8,973910,65,comparaison_1_fc_3_ordre_1_f0_1,1,3,1,1,2,first_best,NA,212,1,173,test
+8,978925,66,comparaison_1_fc_1_ordre_1_f0_2,1,1,1,2,2,second_best,NA,1571,3,81,test
+8,985308,67,comparaison_1_fc_3_ordre_2_f0_1,1,3,2,1,2,first_best,NA,192,2,157,test
+8,990268,68,comparaison_4_fc_2_ordre_2_f0_1,4,2,2,1,2,first_best,NA,1791,1,361,test
+8,997141,69,comparaison_3_fc_2_ordre_2_f0_1,3,2,2,1,2,first_best,NA,1174,2,531,test
+8,1003485,70,comparaison_3_fc_3_ordre_2_f0_2,3,3,2,2,2,first_best,NA,153,1,173,test
+8,1008558,71,comparaison_3_fc_2_ordre_1_f0_2,3,2,1,2,2,first_best,NA,209,1,271,test
+8,1013738,72,comparaison_4_fc_1_ordre_2_f0_1,4,1,2,1,2,first_best,NA,205,1,335,test
+8,1018945,73,comparaison_2_fc_2_ordre_1_f0_1,2,2,1,1,2,first_best,NA,239,1,317,test
+8,1024207,74,comparaison_4_fc_1_ordre_1_f0_1,4,1,1,1,2,first_best,NA,307,1,208,test
+8,1029377,75,comparaison_1_fc_1_ordre_1_f0_1,1,1,1,1,2,first_best,NA,27,1,327,test
+8,1034353,76,comparaison_4_fc_1_ordre_2_f0_2,4,1,2,2,2,first_best,NA,4285,1,156,test
+8,1043486,77,comparaison_3_fc_1_ordre_1_f0_2,3,1,1,2,2,first_best,NA,1283,1,284,test
+8,1049605,78,comparaison_3_fc_1_ordre_2_f0_2,3,1,2,2,2,second_best,NA,94,1,248,test
+8,1054585,79,comparaison_1_fc_3_ordre_2_f0_2,1,3,2,2,2,first_best,NA,343,1,294,test
+8,1059831,80,comparaison_1_fc_2_ordre_2_f0_2,1,2,2,2,2,second_best,NA,70,1,347,test
+8,1064990,81,comparaison_4_fc_3_ordre_2_f0_2,4,3,2,2,2,first_best,NA,292,1,317,test
+8,1070273,82,comparaison_4_fc_2_ordre_1_f0_1,4,2,1,1,2,first_best,NA,308,1,325,test
+8,1075541,83,comparaison_1_fc_2_ordre_1_f0_2,1,2,1,2,2,second_best,NA,880,1,309,test
+8,1081383,84,comparaison_3_fc_1_ordre_2_f0_1,3,1,2,1,2,first_best,NA,327,1,340,test
+8,1086695,85,comparaison_4_fc_3_ordre_1_f0_1,4,3,1,1,2,first_best,NA,339,1,380,test
+8,1092083,86,comparaison_3_fc_1_ordre_1_f0_1,3,1,1,1,2,first_best,NA,177,1,247,test
+8,1097193,87,comparaison_1_fc_1_ordre_2_f0_2,1,1,2,2,2,first_best,NA,302,1,266,test
+8,1102432,88,comparaison_2_fc_1_ordre_1_f0_2,2,1,1,2,2,first_best,NA,528,1,393,test
+8,1108054,89,comparaison_4_fc_1_ordre_1_f0_2,4,1,1,2,2,second_best,NA,652,2,775,test
+8,1114193,90,comparaison_2_fc_1_ordre_2_f0_2,2,1,2,2,2,first_best,NA,226,1,274,test
+8,1119389,91,comparaison_3_fc_3_ordre_2_f0_1,3,3,2,1,2,second_best,NA,507,3,363,test
+8,1124942,92,comparaison_2_fc_1_ordre_2_f0_1,2,1,2,1,2,first_best,NA,3116,2,1158,test
+8,1133902,93,comparaison_2_fc_3_ordre_2_f0_1,2,3,2,1,2,first_best,NA,3763,1,226,test
+8,1142720,94,comparaison_3_fc_2_ordre_2_f0_2,3,2,2,2,2,second_best,NA,153,1,667,test
+8,1148232,95,comparaison_1_fc_1_ordre_2_f0_1,1,1,2,1,2,first_best,NA,6,2,363,test
+8,1153266,96,comparaison_2_fc_3_ordre_1_f0_2,2,3,1,2,2,first_best,NA,154,1,385,test
+8,1158422,97,comparaison_4_fc_3_ordre_2_f0_1,4,3,2,1,3,first_best,NA,168,1,350,test
+8,1163650,98,comparaison_2_fc_1_ordre_2_f0_1,2,1,2,1,3,first_best,NA,324,2,403,test
+8,1169072,99,comparaison_1_fc_3_ordre_2_f0_2,1,3,2,2,3,second_best,NA,369,1,393,test
+8,1174489,100,comparaison_1_fc_3_ordre_1_f0_1,1,3,1,1,3,first_best,NA,31,1,288,test
+8,1179466,101,comparaison_4_fc_2_ordre_1_f0_2,4,2,1,2,3,first_best,NA,139,1,337,test
+8,1184602,102,comparaison_3_fc_2_ordre_1_f0_1,3,2,1,1,3,first_best,NA,323,1,383,test
+8,1189997,103,comparaison_1_fc_2_ordre_1_f0_1,1,2,1,1,3,first_best,NA,171,1,206,test
+8,1195067,104,comparaison_4_fc_2_ordre_2_f0_1,4,2,2,1,3,first_best,NA,1371,1,206,test
+8,1201331,105,comparaison_1_fc_3_ordre_2_f0_1,1,3,2,1,3,first_best,NA,3652,1,303,test
+8,1210122,106,comparaison_4_fc_3_ordre_1_f0_1,4,3,1,1,3,first_best,NA,13,1,450,test
+8,1215240,107,comparaison_3_fc_3_ordre_1_f0_1,3,3,1,1,3,second_best,NA,245,1,331,test
+8,1220496,108,comparaison_4_fc_2_ordre_2_f0_2,4,2,2,2,3,second_best,NA,2163,2,577,test
+8,1227906,109,comparaison_3_fc_3_ordre_2_f0_1,3,3,2,1,3,first_best,NA,418,1,344,test
+8,1233372,110,comparaison_3_fc_3_ordre_2_f0_2,3,3,2,2,3,first_best,NA,287,1,378,test
+8,1238707,111,comparaison_1_fc_1_ordre_1_f0_2,1,1,1,2,3,first_best,NA,287,1,302,test
+8,1244014,112,comparaison_1_fc_2_ordre_1_f0_2,1,2,1,2,3,first_best,NA,4,1,314,test
+8,1248969,113,comparaison_4_fc_3_ordre_2_f0_2,4,3,2,2,3,first_best,NA,180,1,339,test
+8,1254152,114,comparaison_2_fc_2_ordre_1_f0_2,2,2,1,2,3,first_best,NA,8,1,393,test
+8,1259178,115,comparaison_1_fc_1_ordre_2_f0_1,1,1,2,1,3,first_best,NA,275,2,436,test
+8,1264495,116,comparaison_4_fc_2_ordre_1_f0_1,4,2,1,1,3,first_best,NA,3637,1,277,test
+8,1273151,117,comparaison_3_fc_3_ordre_1_f0_2,3,3,1,2,3,second_best,NA,227,1,426,test
+8,1278471,118,comparaison_4_fc_1_ordre_2_f0_1,4,1,2,1,3,first_best,NA,2174,3,375,test
+8,1285725,119,comparaison_4_fc_3_ordre_1_f0_2,4,3,1,2,3,first_best,NA,363,1,1026,test
+8,1291803,120,comparaison_2_fc_3_ordre_2_f0_2,2,3,2,2,3,first_best,NA,3486,1,339,test
+8,1300343,121,comparaison_3_fc_2_ordre_1_f0_2,3,2,1,2,3,first_best,NA,180,1,275,test
+8,1305529,122,comparaison_3_fc_2_ordre_2_f0_2,3,2,2,2,3,second_best,NA,48,1,348,test
+8,1310563,123,comparaison_2_fc_2_ordre_1_f0_1,2,2,1,1,3,second_best,NA,24,1,365,test
+8,1315656,124,comparaison_1_fc_1_ordre_1_f0_1,1,1,1,1,3,first_best,NA,314,2,334,test
+8,1320954,125,comparaison_2_fc_3_ordre_1_f0_1,2,3,1,1,3,first_best,NA,320,1,319,test
+8,1326251,126,comparaison_2_fc_1_ordre_1_f0_2,2,1,1,2,3,first_best,NA,1383,1,335,test
+8,1332642,127,comparaison_2_fc_1_ordre_2_f0_2,2,1,2,2,3,first_best,NA,381,1,352,test
+8,1338042,128,comparaison_4_fc_1_ordre_1_f0_2,4,1,1,2,3,first_best,NA,177,1,331,test
+8,1343252,129,comparaison_2_fc_3_ordre_1_f0_2,2,3,1,2,3,first_best,NA,890,1,366,test
+8,1349185,130,comparaison_2_fc_2_ordre_2_f0_1,2,2,2,1,3,first_best,NA,165,1,284,test
+8,1354351,131,comparaison_1_fc_2_ordre_2_f0_2,1,2,2,2,3,first_best,NA,153,1,357,test
+8,1359483,132,comparaison_3_fc_1_ordre_2_f0_2,3,1,2,2,3,first_best,NA,86,1,419,test
+8,1364648,133,comparaison_3_fc_1_ordre_1_f0_2,3,1,1,2,3,first_best,NA,205,1,316,test
+8,1369867,134,comparaison_1_fc_3_ordre_1_f0_2,1,3,1,2,3,first_best,NA,164,1,371,test
+8,1375230,135,comparaison_3_fc_2_ordre_2_f0_1,3,2,2,1,3,first_best,NA,952,1,295,test
+8,1381182,136,comparaison_1_fc_2_ordre_2_f0_1,1,2,2,1,3,first_best,NA,434,1,500,test
+8,1386825,137,comparaison_4_fc_1_ordre_2_f0_2,4,1,2,2,3,first_best,NA,475,1,339,test
+8,1392340,138,comparaison_1_fc_1_ordre_2_f0_2,1,1,2,2,3,first_best,NA,122,1,307,test
+8,1397445,139,comparaison_3_fc_1_ordre_1_f0_1,3,1,1,1,3,first_best,NA,192,1,302,test
+8,1402647,140,comparaison_3_fc_1_ordre_2_f0_1,3,1,2,1,3,first_best,NA,214,1,232,test
+8,1407764,141,comparaison_2_fc_1_ordre_1_f0_1,2,1,1,1,3,first_best,NA,47,1,216,test
+8,1412751,142,comparaison_2_fc_3_ordre_2_f0_1,2,3,2,1,3,first_best,NA,195,1,212,test
+8,1417833,143,comparaison_2_fc_2_ordre_2_f0_2,2,2,2,2,3,first_best,NA,216,1,245,test
+8,1422916,144,comparaison_4_fc_1_ordre_1_f0_1,4,1,1,1,3,first_best,NA,412,1,374,test

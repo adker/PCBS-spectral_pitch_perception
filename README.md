@@ -23,7 +23,7 @@ The aim of the project is to decide between two potential predictive models of s
     - [Stimuli](#stimuli)
 - [Results](#results)
 - [Conclusion](#conclusion)
-- [Supplementary](#supplementary-material)
+- [Supplementary material](#supplementary-material)
 
 ## Background information
 #### Overtone singing
@@ -196,7 +196,7 @@ for rep in range(nb_rep):
 
 ## Results
 
-A detailed analysis of the results of the experiment is available on the attached R markdown document.
+A detailed analysis of the results of the experiment is available on the attached [R markdown document](analyse_resultats.Rmd) ([html version here](analyse_resultats.html)).
 
 Briefly, the second model (strongest partial in the spectrum) seems to be preferred on the *resolved partials zones* (as expected).
 

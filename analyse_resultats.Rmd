@@ -1,0 +1,271 @@
+---
+title: "Analysis of results"
+author: "Adrien KEREBEL"
+date: "17 juin 2019"
+output: html_document
+---
+
+```{r, results = 'hide', warning = FALSE}
+# Import libraries
+library("ggplot2")
+library("dplyr")
+```
+
+```{r, results = 'hide', warning = FALSE}
+#Parameter for graphs:
+dodge = position_dodge(width = 0.9)
+```
+
+# **Prepare dataset**
+
+### Load data
+
+9 participants completed the experiment (3 women, 6 men, mean age = 26.7, std age = 13.0).
+Their musical backgrounds ranged from medium (4 years of piano lessons) to strong (+10 years of practice).
+
+```{r, results = 'hide', warning = FALSE}
+
+donnees1 <- read.table("data/experiment_spectral_pitch_final_v2_01_201905141633.xpd", sep = ",", header = TRUE, skip = 34, stringsAsFactors=FALSE)
+donnees2 <- read.table("data/experiment_spectral_pitch_final_v2_02_201905161605.xpd", sep = ",", header = TRUE, skip = 34, stringsAsFactors=FALSE)
+donnees3 <- read.table("data/experiment_spectral_pitch_final_v2_03_201905181448.xpd", sep = ",", header = TRUE, skip = 34, stringsAsFactors=FALSE)
+donnees4 <- read.table("data/experiment_spectral_pitch_final_v2_04_201905181546.xpd", sep = ",", header = TRUE, skip = 34, stringsAsFactors=FALSE)
+donnees5 <- read.table("data/experiment_spectral_pitch_final_v2_05_201905181625.xpd", sep = ",", header = TRUE, skip = 34, stringsAsFactors=FALSE)
+donnees6 <- read.table("data/experiment_spectral_pitch_final_v2_06_201905181658.xpd", sep = ",", header = TRUE, skip = 34, stringsAsFactors=FALSE)
+donnees7 <- read.table("data/experiment_spectral_pitch_final_v2_07_201905182240.xpd", sep = ",", header = TRUE, skip = 34, stringsAsFactors=FALSE)
+donnees8 <- read.table("data/experiment_spectral_pitch_final_v2_08_201905182334.xpd", sep = ",", header = TRUE, skip = 34, stringsAsFactors=FALSE)
+donnees9 <- read.table("data/experiment_spectral_pitch_final_v2_09_201905201240.xpd", sep = ",", header = TRUE, skip = 34, stringsAsFactors=FALSE)
+donnees <- rbind(donnees1,donnees2,donnees3,donnees4,donnees5,donnees6,donnees7,donnees8,donnees9)
+
+nb_participants <- 9
+```
+
+
+### Specify factors
+
+```{r}
+donnees$comparaison <- factor(donnees$comparaison,
+                              levels = 1:4)
+donnees$zone_fc <- factor(donnees$zone_fc,
+                     levels = 1:3)
+donnees$ordre <- factor(donnees$ordre,
+                        levels = 1:2)
+donnees$f0 <- factor(donnees$f0,
+                     levels = 1:2)
+
+```
+
+
+### Split into training phase and test phase
+
+```{r}
+donnees_entrainement = subset(donnees, donnees$Entrainement_ou_test == 'entrainement')
+donnees_test = subset(donnees, donnees$Entrainement_ou_test == 'test')
+
+```
+
+
+
+# **Analysis**
+
+## Pitch discrimination test phase
+
+```{r, results = 'hide', warning = FALSE}
+donnees_entrainement$Response_entrainement <- as.logical(donnees_entrainement$Response_entrainement)
+score_entrainement = mean(donnees_entrainement$Response_entrainement)*100
+```
+The mean accuracy score is: `r score_entrainement`%
+This shows that participants are able to hear the differences between the pitches predicted by the two models (at least with pure tones). 
+
+The discrimination task is supposed to be more difficult in high harmonic zones:
+
+```{r, results = 'hide', warning = FALSE}
+resXzone_ALL = aggregate(Response_entrainement ~ zone_fc  + subject_id, data = donnees_entrainement, mean)
+resXzone_SE = aggregate(Response_entrainement ~ zone_fc, data = resXzone_ALL, sd)
+resXzone = aggregate(Response_entrainement ~ zone_fc, data = resXzone_ALL, mean)
+resXzone$SE = resXzone_SE$Response_entrainement
+errorBarsres = aes(ymax = Response_entrainement + SE, ymin = Response_entrainement - SE)
+
+resXzone_PLOT =ggplot(data = resXzone, aes(x= zone_fc, y = Response_entrainement)) +
+  geom_bar(position = dodge, stat = "identity", color="black", fill="darkorchid")+
+  scale_x_discrete(labels = c("Partiels resolus", "Partiels peu resolus", "Partiels non resolus")) +
+  geom_errorbar(errorBarsres, position= dodge, width = 0.25) +
+  geom_hline(yintercept=0.5, linetype="dashed", 
+             color = "green", size=0.8) +
+  scale_y_continuous("Taux de bonnes reponses")+
+  theme_bw() +
+  xlab("Position du centroide") +
+  ggtitle("Repartition des erreurs de la phase de test")+
+  theme(plot.title = element_text(hjust = 0.5, size = 20)) +
+  theme(axis.title.x = element_text(size = 15)) +
+  theme(axis.title.y = element_text(size = 15)) +
+  coord_cartesian(ylim = c(0,1))+
+  guides(fill=FALSE)
+resXzone_PLOT
+```
+```{r, results = 'hide', warning = FALSE}
+t = table(donnees_entrainement$zone_fc , donnees_entrainement$Response_entrainement)
+chisq.test(t)
+```
+The discrimination accuracy seems indeed to be slightly lower on the highest harmonic zone.
+
+
+## Task phase
+
+```{r, results = 'hide', warning = FALSE}
+# Highlighting the times when the second model (strongest partial, "strair like") was prefered
+escalier_choisi <- c(((donnees_test$ordre == 1) & (donnees_test$Response_test == 'first_best')) | ((donnees_test$ordre == 2) & (donnees_test$Response_test == 'second_best')))
+
+donnees_test <- cbind(donnees_test, escalier_choisi)
+```
+
+
+### Is their an effect of the zone ?
+
+*Remark*: it is not clear what choosing one model or the other when the spectral bump is in the middle two harmonics means ... (comparisons 3 and 4 on the README document section "Task", comparisons 1 and 2 on the data, sorry for the confusion)  
+
+Let's focus on the other comparisons for now (at f_z-(f0/4) and f_z+(f0/4)):
+```{r, results = 'hide', warning = FALSE}
+data_comp_3_4 <- subset(donnees_test, (comparaison == 3 | comparaison == 4))
+```
+
+```{r, results = 'hide', warning = FALSE}
+errorBarsesc = aes(ymax = escalier_choisi + SE, ymin = escalier_choisi - SE)
+choix_escXzone_fc_ALL = aggregate(escalier_choisi ~ zone_fc  + subject_id, data = data_comp_3_4, mean)
+choix_escXzone_fc_sd = aggregate(escalier_choisi ~ zone_fc, data = choix_escXzone_fc_ALL, sd)
+choix_escXzone_fc = aggregate(escalier_choisi ~ zone_fc, data = choix_escXzone_fc_ALL, mean)
+
+choix_escXzone_fc$SE = choix_escXzone_fc_sd$escalier_choisi
+
+choix_escXzone_fc_PLOT =ggplot(data = choix_escXzone_fc, aes(x= zone_fc, y = escalier_choisi)) +
+  geom_bar(position = dodge, stat = "identity", color="black", fill="darkorchid")+
+  geom_errorbar(errorBarsesc, position= dodge, width = 0.25) +
+  scale_x_discrete(labels = c("Partiels Résolus", "Partiels peu résolus", "Partiels non résolus")) + 
+  geom_hline(yintercept=0.5, linetype="dashed", 
+             color = "green", size=0.8) +
+  scale_y_continuous("frequence choix du modele 2")+
+  theme_bw() +
+  xlab("Zone harmonique") +
+  ggtitle("Reponse selon la comparaison")+
+  theme(plot.title = element_text(hjust = 0.5, size = 20)) +
+  theme(axis.title.x = element_text(size = 15)) +
+  theme(axis.title.y = element_text(size = 15)) +
+  coord_cartesian(ylim = c(0,1))+
+  guides(fill=FALSE)
+choix_escXzone_fc_PLOT
+
+```
+
+
+
+##### Statistical comparisons 
+
+* Test of the normality of the differences
+```{r}
+with(choix_escXzone_fc_ALL, tapply(X = escalier_choisi,INDEX = zone_fc,FUN = shapiro.test))
+```
+
+* Check homogeneity of variances
+```{r}
+aggregate(escalier_choisi ~ zone_fc  + subject_id, data = data_comp_3_4, sd)[3]^2
+```
+
+* ANOVA
+```{r}
+effect_of_zone = aov(escalier_choisi~zone_fc, data = choix_escXzone_fc_ALL)
+summary(effect_of_zone)
+```
+As expected their is an effect of the harmonic zone on the choice of model.
+
+* Post hoc comparisons
+```{r}
+choix_esc_z1 <- subset(choix_escXzone_fc_ALL, (choix_escXzone_fc_ALL$zone_fc == 1))$escalier_choisi
+choix_esc_z2 <- subset(choix_escXzone_fc_ALL, (choix_escXzone_fc_ALL$zone_fc == 2))$escalier_choisi
+choix_esc_z3 <- subset(choix_escXzone_fc_ALL, (choix_escXzone_fc_ALL$zone_fc == 3))$escalier_choisi
+
+t.test(x = choix_esc_z1, y = choix_esc_z2, paired = TRUE, alternative = "two.sided") # non
+t.test(x = choix_esc_z1, y = choix_esc_z3, paired = TRUE, alternative = "greater") # oui
+t.test(x = choix_esc_z2, y = choix_esc_z3, paired = TRUE, alternative = "greater") # oui
+```
+Their is a significant difference between the proportion of choice of the second model between the harmonic zones 1 and 2 (resolved and less resolved partials) and the harmonic zone 3 (unresolved partials).
+
+* Comparaison against chance
+```{r}
+t.test(x = choix_esc_z1, mu = 0.5) 
+t.test(x = choix_esc_z2, mu = 0.5)
+t.test(x = choix_esc_z3, mu = 0.5)
+```
+The second model is chosen more than the other one on the harmonic zones 1 and 2 (resolved and less resolved partials). It confirme my predictions.
+
+On the he harmonic zone 3 (unresolved partials), the choice is at the level of chance. It is more suprising. We can imagine three explanations for that:
+
+* It could be that subjects don't disciminate spectral pitches well at this height, but it is unexpected given the high score at the first phase.
+
+* It could be that half of them chose one model and the other half the other, due to the use of different strategies to complete the task for example. We can check it quickly:
+
+```{r}
+ggplot(data = choix_escXzone_fc_ALL,
+       mapping = aes(y = escalier_choisi, x = zone_fc)) + 
+  geom_violin() +
+  geom_jitter(width = .1) +
+  geom_hline(yintercept=0.5, linetype="dashed", 
+             color = "green", size=0.8) +
+  scale_x_discrete(labels = c("Partiels Résolus", "Partiels peu résolus", "Partiels non résolus")) + 
+  theme_bw() +
+  scale_y_continuous("frequence choix du modele 2")+
+  theme_bw() +
+  xlab("Zone harmonique") +
+  ggtitle("Reponse selon la comparaison")+
+  theme(plot.title = element_text(hjust = 0.5, size = 20)) +
+  theme(axis.title.x = element_text(size = 15)) +
+  theme(axis.title.y = element_text(size = 15)) +
+  coord_cartesian(ylim = c(0,1))
+```
+As we can see it is not the case.
+
+* Another explanation could be that all subject choose one model in one of the two comparisons and the other model on the second comparison, ie that there is an interaction between the comparison (f_z-(f0/4) or f_z+(f0/4)) and the harmonic zone.
+
+
+## Is their an interaction between the comparison and the harmonic zone ?
+
+* ANOVA
+```{r}
+choix_escXcomparaisonXzone_ALL = aggregate(escalier_choisi ~ comparaison  + zone_fc + subject_id, data = data_comp_3_4, mean)
+inter_comp_zone = aov(escalier_choisi ~ comparaison * zone_fc, data = choix_escXcomparaisonXzone_ALL)
+summary(inter_comp_zone)
+```
+The interaction is significant.
+
+```{r, results = 'hide', warning = FALSE}
+choix_escXcomparaisonXzone_sd = aggregate(escalier_choisi ~ comparaison + zone_fc, data = choix_escXcomparaisonXzone_ALL, sd)
+choix_escXcomparaisonXzone = aggregate(escalier_choisi ~ comparaison + zone_fc, data = choix_escXcomparaisonXzone_ALL, mean)
+choix_escXcomparaisonXzone$SE = choix_escXcomparaisonXzone_sd$escalier_choisi
+
+zone_names <- list(
+  '1'="Partiel resolus",
+  '2'="Partiels peu resolus",
+  '3'="Partiels non resolus")
+zone_labeller <- function(variable,value){
+  return(zone_names[value])
+}
+
+choix_escXcomparaison_PLOT <- ggplot(data = choix_escXcomparaisonXzone, aes(x= comparaison, y = escalier_choisi)) +
+  geom_bar(position = dodge, stat = "identity", color="black", fill="darkorchid")+
+  facet_grid(. ~ zone_fc, labeller=zone_labeller) +
+  geom_errorbar(errorBarsesc, position= dodge, width = 0.25) +
+  geom_hline(yintercept=0.5, linetype="dashed", 
+             color = "green", size=0.8) +
+  scale_y_continuous("frequence choix escalier")+
+  theme_bw() +
+  scale_x_discrete(labels = c("f_z-(f0/4)", "f_z+(f0/4)"))+
+  xlab("comparaison") +
+  ggtitle("Reponse selon la comparaison et la zone")+
+  theme(plot.title = element_text(hjust = 0.5, size = 20)) +
+  theme(axis.title.x = element_text(size = 15)) +
+  theme(axis.title.y = element_text(size = 15)) +
+  coord_cartesian(ylim = c(0,1))+
+  guides(fill=FALSE)
+choix_escXcomparaison_PLOT
+```
+
+We can see indeed that comparisons at f_z-(f0/4) and at f_z+(f0/4) elicite two different responses.
+This could be interpreted as a bias toward lowest pitches in hight frequencies.
