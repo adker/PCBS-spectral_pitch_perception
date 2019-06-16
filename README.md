@@ -3,7 +3,7 @@
 
 #### Final project for PCBS class
 #### (on the same topic as an internship at the LSP, ENS)
-##### ![web page version here](https://adker.github.io/PCBS-spectral_pitch_perception/)
+##### [web page version here](https://adker.github.io/PCBS-spectral_pitch_perception/)
 #### *Adrien Kerebel*
 ##### *experiment designed with the help of A. de Cheveigné and J. Graves*
 
