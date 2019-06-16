@@ -1,14 +1,13 @@
 clear all; 
 close all;
 
-%path = 'C:\Users\adrie\Documents\Cours\Cogmaster\S2\Stage LSP\exp\generation_stim\stim\'
 path = 'stimuli/'
 
 %% Parametres generaux
 
 Fe = 44100;
 
-duree_son = 4;              % plus long que ce qu'on va presenter au sujet (pour pouvoir modifier la longeur si besoin)
+duree_son = 4;              % plus long que ce qu'on va presenter au sujet (pour pouvoir modifier la longueur si besoin)
 
 Q = 100;                    % facteur de qualite du filtre
 n = duree_son*Fe;
@@ -106,7 +105,7 @@ pas = floor(taille/nb_imp);
 serie_imp = zeros(1,taille);
 
 for i = 0:(nb_imp-2)
-    serie_imp((i*pas)+1) = 1;  % penser au ; !!!!!
+    serie_imp((i*pas)+1) = 1;
 end
 
 end
