@@ -20,7 +20,7 @@ dodge = position_dodge(width = 0.9)
 
 ### Load data
 
-9 participants completed the experiment (3 women, 6 men, mean age = 26.7, std age = 13.0).
+Nine participants completed the experiment (3 females, 6 males, mean age = 26.7, stdev age = 13.0).
 Their musical backgrounds ranged from medium (4 years of piano lessons) to strong (+10 years of practice).
 
 ```{r, results = 'hide', warning = FALSE}
@@ -73,8 +73,8 @@ donnees_test = subset(donnees, donnees$Entrainement_ou_test == 'test')
 donnees_entrainement$Response_entrainement <- as.logical(donnees_entrainement$Response_entrainement)
 score_entrainement = mean(donnees_entrainement$Response_entrainement)*100
 ```
-The mean accuracy score is: `r score_entrainement`%
-This shows that participants are able to hear the differences between the pitches predicted by the two models (at least with pure tones). 
+The mean accuracy score on the pitch discrimination phase is: `r score_entrainement`%
+This result shows that participants are able to hear the differences between the pitches predicted by the two models (at least with pure tones). 
 
 The discrimination task is supposed to be more difficult in high harmonic zones:
 
@@ -102,11 +102,11 @@ resXzone_PLOT =ggplot(data = resXzone, aes(x= zone_fc, y = Response_entrainement
   guides(fill=FALSE)
 resXzone_PLOT
 ```
-```{r, results = 'hide', warning = FALSE}
+```{r, warning = FALSE}
 t = table(donnees_entrainement$zone_fc , donnees_entrainement$Response_entrainement)
 chisq.test(t)
 ```
-The discrimination accuracy seems indeed to be slightly lower on the highest harmonic zone.
+The discrimination accuracy is indeed to be slightly lower on the highest harmonic zone.
 
 
 ## Task phase
@@ -121,9 +121,9 @@ donnees_test <- cbind(donnees_test, escalier_choisi)
 
 ### Is their an effect of the zone ?
 
-*Remark*: it is not clear what choosing one model or the other when the spectral bump is in the middle two harmonics means ... (comparisons 3 and 4 on the README document section "Task", comparisons 1 and 2 on the data, sorry for the confusion)  
+*Remark*: It is not clear what choosing the prediction of one model or the other when the spectral bump is in the middle two harmonics means ... (comparisons 1 and 2 on the README document, section "Task") 
 
-Let's focus on the other comparisons for now (at f_z-(f0/4) and f_z+(f0/4)):
+Let's focus on comparisons 3 and 4 for now (at f_z-(f0/4) and f_z+(f0/4)):
 ```{r, results = 'hide', warning = FALSE}
 data_comp_3_4 <- subset(donnees_test, (comparaison == 3 | comparaison == 4))
 ```
@@ -186,17 +186,19 @@ t.test(x = choix_esc_z1, y = choix_esc_z2, paired = TRUE, alternative = "two.sid
 t.test(x = choix_esc_z1, y = choix_esc_z3, paired = TRUE, alternative = "greater") # oui
 t.test(x = choix_esc_z2, y = choix_esc_z3, paired = TRUE, alternative = "greater") # oui
 ```
-Their is a significant difference between the proportion of choice of the second model between the harmonic zones 1 and 2 (resolved and less resolved partials) and the harmonic zone 3 (unresolved partials).
+There is a significant difference between the proportion of choice of the prediction of the second model between the harmonic zones 1 and 2 (resolved and less resolved partials) and the harmonic zone 3 (unresolved partials).
 
-* Comparaison against chance
+* Comparison against chance
 ```{r}
 t.test(x = choix_esc_z1, mu = 0.5) 
 t.test(x = choix_esc_z2, mu = 0.5)
 t.test(x = choix_esc_z3, mu = 0.5)
 ```
-The second model is chosen more than the other one on the harmonic zones 1 and 2 (resolved and less resolved partials). It confirme my predictions.
+The second model is chosen more than the other one on the harmonic zones 1 and 2 (resolved and less resolved partials). This confirms my predictions.
 
-On the he harmonic zone 3 (unresolved partials), the choice is at the level of chance. It is more suprising. We can imagine three explanations for that:
+On the harmonic zone 3 (unresolved partials), the choice is at the level of chance. This result is more suprising.
+
+We can imagine three explanations:
 
 * It could be that subjects don't disciminate spectral pitches well at this height, but it is unexpected given the high score at the first phase.
 
@@ -220,9 +222,10 @@ ggplot(data = choix_escXzone_fc_ALL,
   theme(axis.title.y = element_text(size = 15)) +
   coord_cartesian(ylim = c(0,1))
 ```
+
 As we can see it is not the case.
 
-* Another explanation could be that all subject choose one model in one of the two comparisons and the other model on the second comparison, ie that there is an interaction between the comparison (f_z-(f0/4) or f_z+(f0/4)) and the harmonic zone.
+* Another explanation could be that all subjects choose the prediction of one model in one of the two comparisons and the prediction of the other model on the second comparison, ie that there is an interaction between the comparison (f_z-(f0/4) or f_z+(f0/4)) and the harmonic zone.
 
 
 ## Is their an interaction between the comparison and the harmonic zone ?
@@ -267,5 +270,5 @@ choix_escXcomparaison_PLOT <- ggplot(data = choix_escXcomparaisonXzone, aes(x= c
 choix_escXcomparaison_PLOT
 ```
 
-We can see indeed that comparisons at f_z-(f0/4) and at f_z+(f0/4) elicite two different responses.
-This could be interpreted as a bias toward lowest pitches in hight frequencies.
+We can see indeed that comparisons at f_z-(f0/4) and at f_z+(f0/4) elicits two different responses.
+This could be interpreted as a bias towards the lowest pitches in high frequencies.

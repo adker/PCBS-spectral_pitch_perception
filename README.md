@@ -3,7 +3,7 @@
 
 #### Final project for PCBS class
 #### (on the same topic as an internship at the LSP, ENS)
-##### [web page version here](https://adker.github.io/PCBS-spectral_pitch_perception/)
+##### [Github page version here](https://adker.github.io/PCBS-spectral_pitch_perception/)
 #### *Adrien Kerebel*
 ##### *experiment designed with the help of A. de Cheveigné and J. Graves*
 
@@ -206,6 +206,10 @@ Interestingly, none of the models is strongly preferred on the non-resolved part
 
 ## Conclusion
 
+This experiment was designed to decide between two models of spectral pitch perception. The two models tested are very simplistic thus it is not surprising that none of them perfectly reflects perception. Further experiments could use the same design with more realistic and complex models.
+
+I haven't analysed the data on reaction time, confidence judgment comparisons at f_z-(f0/2) here. This is mostly due to a lack of time but also because the conclusions that could be drawn from these data are not straightforward. It was meant to be a measurement of spectral pitch saliency. Indeed, personal listening suggests that spectral bumps in the middle between two harmonic partials (at f_z-(f0/2)) hardly elicits any spectral pitches.
+
 ## Supplementary material
 
-The scripts used to make the figures of this document are available in the "supplementary" folder of the repository (![spectrum](supplementary/spectre_plot.m), ![filter frequency response](supplementary/plot_reponse_en_frequence.m), ![sonagramme](supplementary/plot_sonagramme.m)).
+The scripts used to make the figures of this document are available in the "supplementary" folder of the repository ([spectrum](supplementary/spectre_plot.m), [filter frequency response](supplementary/plot_reponse_en_frequence.m), [sonagramme](supplementary/plot_sonagramme.m)).
